@@ -73,7 +73,7 @@ document.getElementById('start-game').addEventListener('click',()=>{
   z=prompt('Play First? Yes or No')
   if(z=='No'){
     fillBoard(Math.floor(Math.random()*9),computerMarker)
-    document.getElementById('4').innerText = computerMarker;
+    document.getElementById(Math.floor(Math.random()*9)).innerText = computerMarker;
     disableButton();
   }
   else if(z=='Yes'){
@@ -151,7 +151,7 @@ function ResetBoard(){
 
   z=prompt('Play First? Yes or No')
   if(z=='No'){
-    fillBoard(4,computerMarker)
+    fillBoard(Math.floor(Math.random()*9),computerMarker)
     document.getElementById(Math.floor(Math.random()*9)).innerText = computerMarker;
     disableButton()
   }
