@@ -68,7 +68,7 @@ document.getElementById('start-game').addEventListener('click',()=>{
 
   if(checkName()==true)
   return;
-  showBoard();
+
   document.querySelector('.scores-area').style.display='block';
   z=prompt('Play First? Yes or No')
   if(z=='No'){
@@ -83,6 +83,7 @@ document.getElementById('start-game').addEventListener('click',()=>{
     alert('Enter "Yes" or "No" only to start');
     return;
   }
+  showBoard();
 
 
 
