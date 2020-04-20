@@ -3,274 +3,40 @@
   <head>
     <meta charset="utf-8">
     <title>Tic Tac Toe</title>
+    <link href="https://fonts.googleapis.com/css?family=Anton|Comic+Neue|Dancing+Script|Roboto+Slab&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="image.svg">
   </head>
-
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <link rel="stylesheet" href="assets/css/master.css">
-
-
   <body>
 
+    <header>
+      Tic Tac Toe
+    </header>
 
-    <div class="container main-container">
-      <h1>Tic Tac Toe</h1>
-      <div class="reset-button-container">
-        <button type="button" name="button" class=' btn btn-warning' id='resetgame'>Reset the game</button>
+    <div class="main-content">
 
+      <div class="container">
 
-      </div>
-      <div class=button-container>
-        <button type="button" name="button" class='btn btn-primary' id='vs-computer' class='selection-buttons'><a href="index2.html">VS Computer</a></button>
-        <button type="button" name="button" class='btn btn-primary' id='vs-player' class='selection-buttons'>VS Player</button>
-      </div>
-      <div class="info-container vs-com">
-        <input type="text" placeholder="Player Name">
-      </div>
-      <div class="info-container vs-player">
-
-        <input type="text" placeholder="Player 1 Name" id='player1name'>
-        <input type="text" placeholder="Player 2 Name" id='player2name'>
-
-      </div>
-      <div class="start-game-container">
-        <button type="button" name="button" class='btn btn-info'>Start Game</button>
-
-      </div>
-
-      <div class="game-area">
-
-        <div class="rows">
-          <div class="cell" id='0'>
-
-          </div>
-          <div class="cell" id='1'>
-
-          </div>
-          <div class="cell" id='2'>
-
-          </div>
-        </div>
-        <div class="rows">
-          <div class="cell" id='3'>
-
-          </div>
-          <div class="cell" id='4'>
-
-          </div>
-          <div class="cell" id='5'>
-
-          </div>
-        </div>
-        <div class="rows">
-          <div class="cell" id='6'>
-
-          </div>
-          <div class="cell" id='7'>
-
-          </div>
-          <div class="cell" id='8'>
-
-          </div>
-        </div>
+          <a href="double.html">
+            <button type="button" name="button" class='btn btn-primary'>
+            Two PLayer
+            </button>
+          </a>
+          <a href="dumb.html">
+            <button type="button" name="button" class='btn btn-primary'>
+              Single Player(easy)
+            </button>
+          </a>
+          <a href="smart.html">
+            <button type="button" name="button" class='btn btn-primary'>
+              Single Player(hard)
+            </button>
+          </a>
 
       </div>
 
     </div>
-
-    <div id="winner-area">
-
-    </div>
-
 
   </body>
-  <script type="text/javascript">
-
-
-
-    vsPlayerButton = document.getElementById('vs-player');
-    vsComputerButton = document.getElementById('vs-computer');
-    opponentSelectionButtons = document.querySelectorAll('.selection-buttons');
-    cells = Array.from(document.querySelectorAll('.cell'));
-    resetgame = document.getElementById('resetgame')
-    let opponent = '' ;
-    let currentChance=0;
-
-
-
-
-    function hideOpponentButtons(){
-      vsPlayerButton.style.display='none';
-      vsComputerButton.style.display='none';
-      vsPlayerButton.disabled = false;
-      vsComputerButton.disabled = false;
-
-    }
-
-    function hideInputArea(){
-      if(opponent == 'player'){
-
-        document.querySelectorAll('.info-container')[1].style.display='none';
-        document.querySelector('.start-game-container').style.display = 'none';
-        vsComputerButton.disabled = false;
-        vsPlayerButton.disabled = false;
-      }
-
-
-    }
-
-    function showOpponentButtons(){
-      vsPlayerButton.style.display='inline-block';
-      vsComputerButton.style.display='inline-block';
-
-    }
-
-    function resetGameCall(){
-      resetgame.addEventListener('click',()=>{
-        currentChance=0;
-        showOpponentButtons();
-        playerButtonClicked();
-        startGameCall();
-
-        //hide the winner
-        document.getElementById('winner-area').innerText=''
-        // document.getElementById('winner-area').innerText=''
-
-        //hide the game area i.e. board
-        document.querySelector('.game-area').style.display='none';
-
-        //hide the reset button
-        resetgame.style.display='none';
-
-        //make cells no content
-        cells.forEach(cell =>{
-
-            cell.innerText='';
-
-        })
-
-      })
-    }
-
-    function startGameCall(){
-      document.querySelector('.start-game-container').addEventListener('click',()=>{
-
-        if(opponent == 'player'){
-
-          player_1 = document.getElementById('player1name').value
-          player_2 = document.getElementById('player2name').value
-          document.getElementById('resetgame').style.display='block'
-          document.querySelector('.start-game-container').style.display='none'
-        }
-
-        hideOpponentButtons();
-        hideInputArea();
-
-
-
-
-        document.querySelector('.game-area').style.display='block';
-        if (opponent == 'player'){
-
-          cells.forEach(cell =>{
-            cell.addEventListener('click',(e)=>{
-              if(checkWinCondition()){
-
-              }
-              else{
-                if(currentChance%2==0 && e.target.innerText==''){
-                  e.target.innerText='X';
-                  currentChance++;
-                }
-                else if(currentChance%2==1 && e.target.innerText==''){
-                  e.target.innerText='O'
-                  currentChance++;
-                }
-              }
-              if(checkWinCondition()){
-                if(currentChance%2==1){
-                  document.getElementById('winner-area').innerText=`${player_1} Wins`;
-                }
-                else if(currentChance%2==0){
-                  document.getElementById('winner-area').innerText=`${player_2} Wins`;
-
-                }
-              }
-
-              if(currentChance == 9 && !checkWinCondition()){
-                document.getElementById('winner-area').innerText=`Its a tie`;
-
-              }
-
-            })
-          })
-        }
-
-
-        resetGameCall();
-
-
-      })
-    }
-
-    function showInputArea(){
-      document.querySelectorAll('.info-container')[1].style.display='block';
-      document.querySelector('.start-game-container').style.display = 'block';
-      vsComputerButton.disabled = true;
-
-    }
-
-
-    function playerButtonClicked(){
-
-      vsPlayerButton.addEventListener('click',(e)=>{
-        showInputArea();
-        document.querySelectorAll('.info-container')[1].style.display='block';
-        document.querySelector('.start-game-container').style.display = 'block';
-        vsComputerButton.disabled = true;
-
-        opponent = 'player';
-        startGameCall();
-
-
-      })
-    }
-
-    playerButtonClicked();
-
-
-
-
-    function checkCells(a,b,c){
-      if(a==b && a==c && a!='' && b!='' && c!='')
-      return true;
-    }
-
-
-    function checkWinCondition(){
-      if(checkCells(cells[0].innerText,cells[1].innerText,cells[2].innerText)) return true;
-      else if(checkCells(cells[0].innerText,cells[3].innerText,cells[6].innerText)) return true;
-      else if(checkCells(cells[0].innerText,cells[4].innerText,cells[8].innerText)) return true;
-      else if(checkCells(cells[1].innerText,cells[4].innerText,cells[7].innerText)) return true;
-      else if(checkCells(cells[2].innerText,cells[5].innerText,cells[8].innerText)) return true;
-      else if(checkCells(cells[2].innerText,cells[4].innerText,cells[6].innerText)) return true;
-      else if(checkCells(cells[3].innerText,cells[4].innerText,cells[5].innerText)) return true;
-      else if(checkCells(cells[7].innerText,cells[6].innerText,cells[8].innerText)) return true;
-
-
-      else return false
-
-    }
-
-
-    //
-    //
-    // Computer Play Functions
-    //
-    //
-
-
-
-
-
-  </script>
 </html>
