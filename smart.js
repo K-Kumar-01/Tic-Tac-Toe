@@ -75,6 +75,7 @@ document.getElementById('start-game').addEventListener('click',()=>{
   cells.forEach(cell =>{
     cell.addEventListener('click',(e)=>{
       disableButton();
+      executed=0;
       if(checkWinCondition()=='X' || checkWinCondition()=='O'){
 
       }
@@ -82,28 +83,33 @@ document.getElementById('start-game').addEventListener('click',()=>{
         if(e.target.innerText==''){
           e.target.innerText=playerMarker;
           fillBoard(e.target.id,playerMarker)
+          executed=1;
 
         }
-      if (getResult(playerMarker, board) == false) {
-        index = optimalIndex();
-        document.getElementById(index).innerText = computerMarker;
-        fillBoard(index, computerMarker);
+        if(executed ==1){
+          if (getResult(playerMarker, board) == false) {
+            index = optimalIndex();
+            document.getElementById(index).innerText = computerMarker;
+            fillBoard(index, computerMarker);
 
-        if (getResult(computerMarker, board) == true) {
-          document.getElementById("winner-area").innerText = "Beta Tmse na ho paega"
+            if (getResult(computerMarker, board) == true) {
+              document.getElementById("winner-area").innerText = "Beta Tmse na ho paega"
 
-          computerScore++;
-          updateScores();
+              computerScore++;
+              updateScores();
 
-        } else if (getResult(computerMarker, board) == "Tie") {
-          document.getElementById("winner-area").innerText = "Tie se aage bhi to badho"
+            } else if (getResult(computerMarker, board) == "Tie") {
+              document.getElementById("winner-area").innerText = "Tie se aage bhi to badho"
 
+
+            }
+          } else {
+            document.getElementById("winner-area").innerText = "Tie se aage bhi to badho"
+
+          }
 
         }
-      } else {
-        document.getElementById("winner-area").innerText = "Tie se aage bhi to badho"
 
-      }
     }
 
     })
