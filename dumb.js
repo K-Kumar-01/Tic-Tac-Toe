@@ -70,6 +70,19 @@ document.getElementById('start-game').addEventListener('click',()=>{
   return;
   showBoard();
   document.querySelector('.scores-area').style.display='block';
+  z=prompt('Play First? Yes or No')
+  if(z=='No'){
+    fillBoard(Math.floor(Math.random()*9),computerMarker)
+    document.getElementById('4').innerText = computerMarker;
+    disableButton();
+  }
+  else if(z=='Yes'){
+
+  }
+  else{
+    alert('Enter "Yes" or "No" only to start');
+    return;
+  }
 
 
 
@@ -98,7 +111,7 @@ document.getElementById('start-game').addEventListener('click',()=>{
 
       }
 
-      if(currentChance == 5 && (checkWinCondition()!='X'&&checkWinCondition()!='O')){
+      if((currentChance == 5 && (checkWinCondition()!='X'&&checkWinCondition()!='O'))||(z=='No' && currentChance==4 && (checkWinCondition()!='X'&&checkWinCondition()!='O') )){
         document.getElementById('winner-area').innerText=`Its a tie`;
 
       }
@@ -134,6 +147,20 @@ function ResetBoard(){
   document.getElementById('winner-area').innerText='';
   document.getElementById('reverse').disabled=false;
   board =[['!','!','!'],['!','!','!'],['!','!','!']]
+
+  z=prompt('Play First? Yes or No')
+  if(z=='No'){
+    fillBoard(4,computerMarker)
+    document.getElementById(Math.floor(Math.random()*9)).innerText = computerMarker;
+    disableButton()
+  }
+  else if(z=='Yes'){
+
+  }
+  else{
+    alert('Enter "Yes" or "No" only to start');
+    return;
+  }
 
 }
 

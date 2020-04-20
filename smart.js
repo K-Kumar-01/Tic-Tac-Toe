@@ -52,6 +52,20 @@ document.getElementById('start-game').addEventListener('click',()=>{
 
   if(checkName()==true)
   return;
+
+  z=prompt('Play First? Yes or No')
+  if(z=='No'){
+    fillBoard(4,computerMarker)
+    document.getElementById('4').innerText = computerMarker;
+    disableButton();
+  }
+  else if(z=='Yes'){
+
+  }
+  else{
+    alert('Enter "Yes" or "No" only to start');
+    return;
+  }
   showBoard();
   document.querySelector('.scores-area').style.display='block';
 
@@ -77,18 +91,17 @@ document.getElementById('start-game').addEventListener('click',()=>{
 
         if (getResult(computerMarker, board) == true) {
           document.getElementById("winner-area").innerText = "Beta Tmse na ho paega"
-          // document.getElementById("winner-area").style.display = "block";
+
           computerScore++;
-          // updateScorexs();
+          updateScores();
 
         } else if (getResult(computerMarker, board) == "Tie") {
           document.getElementById("winner-area").innerText = "Tie se aage bhi to badho"
-          // document.getElementById("winner-area").style.display = "block";
+
 
         }
       } else {
         document.getElementById("winner-area").innerText = "Tie se aage bhi to badho"
-        // document.getElementById("winner-area").style.display = "block";
 
       }
     }
@@ -99,19 +112,17 @@ document.getElementById('start-game').addEventListener('click',()=>{
 })
 
 
-// Not Working properly here
-// function showScoreshere(){
-//   alert("Hello");
-//   // document.querySelector('.scores-area p').innerHTML=`${document.getElementById('player_1').value}:${playerScore}<br>Computer:${computerScore}`
-// }
-// function updateScores(){
-//   document.querySelector('.scores-area p').innerHTML=`${document.getElementById('player_1').value}:${playerScore}<br>Computer:${computerScore}`
-// }
-//
-// document.getElementById('scores-button').addEventListener('click',()=>{
-//   alert('hello')
-//
-// })
+function showScoreshere(){
+  document.querySelector('.scores-area p').innerHTML=`${document.getElementById('player_1').value}:${playerScore}<br>Computer:${computerScore}`
+}
+function updateScores(){
+  document.querySelector('.scores-area p').innerHTML=`${document.getElementById('player_1').value}:${playerScore}<br>Computer:${computerScore}`
+}
+
+document.getElementById('scores-button').addEventListener('click',()=>{
+  showScoreshere();
+
+})
 
 
 document.querySelector('.reset-area').addEventListener('click',ResetBoard)
@@ -126,6 +137,18 @@ function ResetBoard(){
   document.getElementById('winner-area').innerText='';
   document.getElementById('reverse').disabled=false;
   board =[[0,0,0],[0,0,0],[0,0,0]]
+  z=prompt('Play First? Yes or No')
+  if(z=='No'){
+    fillBoard('4'),computerMarker)
+    disableButton();
+  }
+  else if(z=='Yes'){
+
+  }
+  else{
+    alert('Enter "Yes" or "No" only to start');
+    return;
+  }
 
 }
 
