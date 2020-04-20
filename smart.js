@@ -139,7 +139,8 @@ function ResetBoard(){
   board =[[0,0,0],[0,0,0],[0,0,0]]
   z=prompt('Play First? Yes or No')
   if(z=='No'){
-    fillBoard('4',computerMarker)
+    fillBoard(4,computerMarker)
+    document.getElementById('4').innerText = computerMarker;
     disableButton();
   }
   else if(z=='Yes'){
